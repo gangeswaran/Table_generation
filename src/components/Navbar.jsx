@@ -1,9 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import '../styles/Navbar.css';
 
 function Navbar({ setSearchTerm }) {
+  const location = useLocation();
+  const [path, setPath] = useState(location.pathname);
+
+  useEffect(() => {
+    setPath(location.pathname);
+  }, [location.pathname]);
+
   const handleSearch = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -13,7 +20,7 @@ function Navbar({ setSearchTerm }) {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <h1>Project Showcase</h1>
+          {path === "/" ? <h1>Projects</h1> : <h1>←Back</h1>}
         </Link>
         <Form className="d-flex">
           <Form.Control

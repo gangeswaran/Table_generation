@@ -7,7 +7,6 @@ function Home() {
     <>
       <h1 style={{textAlign:"center"}}>MY PROJECTS</h1>
       <div >
-        <div className="row">
           <div className="col-md-4">
             <div className="card">
               <div className="card-body">
@@ -18,6 +17,7 @@ function Home() {
                 </Link>
               </div>
             </div>
+          </div>
           </div>
           <div className="col-md-4">
             <div className="card">
@@ -41,8 +41,8 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+      
+      
     </>
   );
 }
