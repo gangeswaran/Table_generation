@@ -9,7 +9,7 @@ import Counter from './components/project_3/Counter';
 function App() {
   return (
    
-      <div>
+      <>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
@@ -17,7 +17,7 @@ function App() {
           <Route path='/table' element={<Table />} />
           <Route path='/counter-redux' element={<Counter />} />
         </Routes>
-      </div>
+      </>
     
   );
 }
