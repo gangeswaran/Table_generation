@@ -69,7 +69,7 @@ function Home() {
               onClick={toggleLike2}
               style={{ border: "none", background: "transparent" }}
             >
-              {liked2 ? "❤️" : "👍"}
+              {liked2 ? "❤️" : "👍"}<span>{like2  ? like2: ""}</span>
             </button>
             <Link to="/Table" className="btn btn-primary">
               View Project
@@ -85,7 +85,7 @@ function Home() {
               onClick={toggleLike3}
               style={{ border: "none", background: "transparent" }}
             >
-              {liked3 ? "❤️" : "👍"}
+              {liked3 ? "❤️" : "👍"}<span>{like3  ? like3: ""}</span>
             </button>
             <Link to="/counter-redux" className="btn btn-primary">
               View Project
