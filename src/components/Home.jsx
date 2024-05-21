@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
+import styled from "styled-components";
 
 function Home() {
+  
   return (
     <>
       <h1 style={{textAlign:"center"}}>MY PROJECTS</h1>
