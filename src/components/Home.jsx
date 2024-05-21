@@ -1,83 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 import styled from "styled-components";
 
+class Project {
+  constructor(name) {
+    this.name = name;
+    this.likes = 0;
+    this.liked = false; // New property to track whether the project is liked
+  }
+
+  toggleLike() {
+    if (this.liked) {
+      this.likes--;
+    } else {
+      this.likes++;
+    }
+    this.liked = !this.liked;
+  }
+}
+
 function Home() {
-  const [like1, setLike1] = useState(0);
-  const [like2, setLike2] = useState(0);
-  const [like3, setLike3] = useState(0);
-
-  const liked1 = () => {
-    setLike1(like1 + 1);
-    window.setTimeout(() =>
-      alert("Thank you for liking the project!"), 1500);
-
-  };
-
-  const liked2 = () => {
-    setLike2(like2 + 1);
-  };
-
-  const liked3 = () => {
-    setLike3(like3 + 1);
-  };
+  // Create instances of Project for each project
+  const [projects] = useState([
+    new Project("Callback Task"),
+    new Project("Table Generation"),
+    new Project("Redux"),
+  ]);
 
   return (
     <>
       <h1 style={{ textAlign: "center" }}>MY PROJECTS</h1>
       <div>
-        <div className="col-md-4">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Callback Task</h5>
-              <button
-                onClick={liked1}
-                style={{ border: "none", background: "transparent" }}
-              >
-                👍
-                <p>{like1}</p>
-              </button>
-              <Link to="/calling" className="btn btn-primary">
-                View Project
-              </Link>
+        {projects.map((project, index) => (
+          <div className="col-md-4" key={index}>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{project.name}</h5>
+                <button
+                  onClick={() => project.toggleLike()}
+                  style={{ border: "none", background: "transparent" }}
+                >
+                  {project.liked ? "Unlike" : "Like"}
+                </button>
+                <p>{project.likes}</p>
+                <Link
+                  to={`/${project.name.toLowerCase().replace(/\s/g, "-")}`}
+                  className="btn btn-primary"
+                >
+                  View Project
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="col-md-4">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Table Generation</h5>
-            <button
-              onClick={liked2}
-              style={{ border: "none", background: "transparent" }}
-            >
-              👍
-              <p>{like2}</p>
-            </button>
-            <Link to="/Table" className="btn btn-primary">
-              View Project
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Redux</h5>
-            <button
-              onClick={liked3}
-              style={{ border: "none", background: "transparent" }}
-            >
-              👍
-              <p>{like3}</p>
-            </button>
-            <Link to="/counter-redux" className="btn btn-primary">
-              View Project
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );
