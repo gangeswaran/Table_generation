@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 function Home() {
   
+  
   return (
     <>
       <h1 style={{textAlign:"center"}}>MY PROJECTS</h1>
