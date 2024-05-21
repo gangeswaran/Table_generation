@@ -22,6 +22,9 @@
   display:flow-root;
   align-items: center;
 }
+.card-body button :hover{
+  background-color: #0057b374;
+}
 
 .card-title {
   font-size: 20px;
