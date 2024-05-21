@@ -10,6 +10,9 @@ function Home() {
 
   const liked1 = () => {
     setLike1(like1 + 1);
+    window.setTimeout(() =>
+      alert("Thank you for liking the project!"), 1500);
+
   };
 
   const liked2 = () => {
