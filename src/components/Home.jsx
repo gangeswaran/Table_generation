@@ -2,97 +2,80 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 
-function Home() {
-  const [like1, setLike1] = useState(0);
-  const [liked1, setLiked1] = useState(false);
-  
-  const [like2, setLike2] = useState(0);
-  const [liked2, setLiked2] = useState(false);
-  
-  const [like3, setLike3] = useState(0);
-  const [liked3, setLiked3] = useState(false);
+import project1Image from "../Images/callback.gif";
+import project2Image from "../Images/table.gif";
+import project3Image from "../Images/redux.gif";
 
-  const toggleLike1 = () => {
-    if (liked1) {
-      setLike1(like1 - 1);
-    } else {
-      setLike1(like1 + 1);
-    }
-    setLiked1(!liked1);
+
+const projects = [
+  {
+    id: 1,
+    title: "Callback Task",
+    image: project1Image,
+    link: "/calling"
+  },
+  {
+    id: 2,
+    title: "Table Generation",
+    image: project2Image,
+    link: "/Table"
+  },
+  {
+    id: 3,
+    title: "Redux",
+    image: project3Image,
+    link: "/counter-redux"
+  }
+];
+
+function Home({ searchTerm }) {
+  const [likes, setLikes] = useState({ 1: 0, 2: 0, 3: 0 });
+  const [liked, setLiked] = useState({ 1: false, 2: false, 3: false });
+
+  const toggleLike = (id) => {
+    setLikes((prevLikes) => ({
+      ...prevLikes,
+      [id]: liked[id] ? prevLikes[id] - 1 : prevLikes[id] + 1
+    }));
+    setLiked((prevLiked) => ({
+      ...prevLiked,
+      [id]: !prevLiked[id]
+    }));
   };
 
-  const toggleLike2 = () => {
-    if (liked2) {
-      setLike2(like2 - 1);
-    } else {
-      setLike2(like2 + 1);
-    }
-    setLiked2(!liked2);
-  };
-
-  const toggleLike3 = () => {
-    if (liked3) {
-      setLike3(like3 - 1);
-    } else {
-      setLike3(like3 + 1);
-    }
-    setLiked3(!liked3);
-  };
+  const filteredProjects = projects.filter((project) =>
+    project.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <>
-      <h1 style={{ textAlign: "center" }}>MY PROJECTS</h1>
-      <div>
-        <div className="col-md-4">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Callback Task</h5>
-              <button
-                onClick={toggleLike1}
-                style={{ border: "none", background: "transparent" }}
-              >
-              {liked1 ? "❤️" : "👍"} <span>{like1  ? like1: ""}</span>
-              </button>
-              <Link to="/calling" className="btn btn-primary">
-                View Project
-              </Link>
+    <div className="container">
+      <h1 style={{ textAlign: "center",color:"#001878e8;" }}>MY PROJECTS</h1>
+      <div className="row">
+        {filteredProjects.map((project) => (
+          <div className="col-md-4" key={project.id}>
+            <div className="card post-card">
+              <div className="card-header">
+                <h5 className="card-title">{project.title}</h5>
+              </div>
+              <img src={project.image} alt={project.title} className="card-img-top" />
+              <div className="card-body">
+                <button
+                  onClick={() => toggleLike(project.id)}
+                  className="like-button"
+                >
+                  {liked[project.id] ? "❤️" : "Like👍"} <span>{likes[project.id] ? likes[project.id] : ""}</span>
+                </button>
+              </div>
+              <div className="card-footer">
+                <Link to={project.link} className="btn btn-primary">
+                  View Project
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
-      <div className="col-md-4">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Table Generation</h5>
-            <button
-              onClick={toggleLike2}
-              style={{ border: "none", background: "transparent" }}
-            >
-              {liked2 ? "❤️" : "👍"}<span>{like2  ? like2: ""}</span>
-            </button>
-            <Link to="/Table" className="btn btn-primary">
-              View Project
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="col-md-4">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Redux</h5>
-            <button
-              onClick={toggleLike3}
-              style={{ border: "none", background: "transparent" }}
-            >
-              {liked3 ? "❤️" : "👍"}<span>{like3  ? like3: ""}</span>
-            </button>
-            <Link to="/counter-redux" className="btn btn-primary">
-              View Project
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
+    </div>
   );
 }
 

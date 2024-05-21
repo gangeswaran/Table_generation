@@ -1,7 +1,9 @@
 /* Navbar.css */
-
+*{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
 .navbar {
-  background-color: #333;
+  background-image: url("../Images/navbar.jpg");
   color: #fff;
   padding: 1rem;
 }
@@ -13,7 +15,7 @@
 }
 
 .navbar-logo {
-  color: #fff;
+  color: #6b6986ac;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
@@ -32,16 +34,14 @@
   margin-right: 0.5rem;
 }
 
-.form-control {
-  width: 200px;
-  border-radius: 0.25rem;
+form input{
+  border-radius: 25px;
+width: 250px;
+height: 2.2rem;
 }
-
-.form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+ form input :focus{
+  width: 400px;
 }
-
 /* Responsive Styles */
 
 @media (max-width: 768px) {

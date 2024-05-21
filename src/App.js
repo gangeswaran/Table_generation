@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import { Routes, Route } from 'react-router-dom';
-import "./App.css";
 import Calling from './components/project_1/calling_back';
 import Table from './components/project_2/table';
 import Counter from './components/project_3/Counter';
+import "./App.css";
+
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-   
-      <>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/calling' element={<Calling />} />
-          <Route path='/table' element={<Table />} />
-          <Route path='/counter-redux' element={<Counter />} />
-        </Routes>
-      </>
-    
+    <div className='app'>
+      <Navbar setSearchTerm={setSearchTerm} />
+      <Routes>
+        <Route path='/' element={<Home searchTerm={searchTerm} />} />
+        <Route path='/calling' element={<Calling />} />
+        <Route path='/table' element={<Table />} />
+        <Route path='/counter-redux' element={<Counter />} />
+      </Routes>
+    </div>
   );
 }
 
