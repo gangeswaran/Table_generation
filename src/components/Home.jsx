@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
-import styled from "styled-components";
 
 function Home() {
   const [like1, setLike1] = useState(0);
