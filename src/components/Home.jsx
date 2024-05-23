@@ -33,13 +33,13 @@ function Home({ searchTerm }) {
   const [liked, setLiked] = useState({ 1: false, 2: false, 3: false });
 
   const toggleLike = (id) => {
-    setLikes((prevLikes) => ({
-      ...prevLikes,
-      [id]: liked[id] ? prevLikes[id] - 1 : prevLikes[id] + 1
+    setLikes((likes) => ({
+      ...likes,
+      [id]: liked[id] ? likes[id] - 1 : likes[id] + 1
     }));
-    setLiked((prevLiked) => ({
-      ...prevLiked,
-      [id]: !prevLiked[id]
+    setLiked((liked) => ({
+      ...liked,
+      [id]: !liked[id]
     }));
   };
 
@@ -72,7 +72,7 @@ function Home({ searchTerm }) {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> 
         ))}
       </div>
     </div>

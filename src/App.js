@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navb from './components/Navbar';
 import Home from './components/Home';
 import Calling from './components/project_1/calling_back';
 import Table from './components/project_2/table';
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className='app'>
-      <Navbar setSearchTerm={setSearchTerm} />
+      <Navb setSearchTerm={setSearchTerm} />
       <Routes>
         <Route path='/' element={<Home searchTerm={searchTerm} />} />
         <Route path='/calling' element={<Calling />} />

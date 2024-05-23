@@ -1,11 +1,14 @@
 /* Navbar.css */
-*{
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+/* General Navbar styling */
 .navbar {
   background-image: url("../Images/navbar.jpg");
   color: #fff;
   padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
@@ -14,6 +17,7 @@
   justify-content: space-between;
 }
 
+/* Logo styling */
 .navbar-logo {
   color: #6b6986ac;
   text-decoration: none;
@@ -25,36 +29,72 @@
   color: #ddd;
 }
 
+/* Flex utility class */
 .d-flex {
   display: flex;
   align-items: center;
 }
 
+/* Margin utility class */
 .me-2 {
   margin-right: 0.5rem;
 }
 
-form input{
-  border-radius: 25px;
-width: 250px;
-height: 2.2rem;
+/* Form styling */
+form {
+  display: flex;
+  align-items: center;
 }
- form input :focus{
+
+form input {
+  border-radius: 25px;
+  width: 250px;
+  height: 2.2rem;
+  transition: width 0.3s;
+}
+
+form input:focus {
   width: 400px;
 }
-/* Responsive Styles */
 
+/* Button styling */
+.signup, .login {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 25px;
+  background-color: #6b6986ac;
+  color: white;
+  cursor: pointer;
+}
+
+.signup:hover, .login:hover {
+  background-color: #ddd;
+  color: #6b6986ac;
+}
+
+/* Responsive styling */
 @media (max-width: 768px) {
   .navbar-container {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .navbar-logo {
     margin-bottom: 1rem;
   }
-  
-  .form-control {
+
+  form {
     width: 100%;
+    justify-content: space-between;
+  }
+
+  form input {
+    width: 100%;
+  }
+
+  .signup, .login {
+    width: 100%;
+    margin: 0.5rem 0 0 0;
   }
 }
