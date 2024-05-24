@@ -6,7 +6,6 @@ import project1Image from "../Images/callback.gif";
 import project2Image from "../Images/table.gif";
 import project3Image from "../Images/redux.gif";
 
-
 const projects = [
   {
     id: 1,
@@ -25,7 +24,7 @@ const projects = [
     title: "Redux",
     image: project3Image,
     link: "/counter-redux"
-  }
+  },
 ];
 
 function Home({ searchTerm }) {
@@ -48,31 +47,23 @@ function Home({ searchTerm }) {
   );
 
   return (
-    <div className="container">
-      <h1 style={{ textAlign: "center",color:"#001878e8;" }}>MY PROJECTS</h1>
-      <div className="row">
+    <div className="counterContainer">
+      <div className="card">
         {filteredProjects.map((project) => (
-          <div className="col-md-4" key={project.id}>
-            <div className="card post-card">
-              <div className="card-header">
-                <h5 className="card-title">{project.title}</h5>
-              </div>
-              <img src={project.image} alt={project.title} className="card-img-top" />
-              <div className="card-body">
-                <button
-                  onClick={() => toggleLike(project.id)}
-                  className="like-button"
-                >
-                  {liked[project.id] ? "❤️" : "Like👍"} <span>{likes[project.id] ? likes[project.id] : ""}</span>
-                </button>
-              </div>
-              <div className="card-footer">
-                <Link to={project.link} className="btn btn-primary">
-                  View Project
-                </Link>
-              </div>
+          <div className="cardItem" key={project.id}>
+            <img src={project.image} alt={project.title} className="cardImgTop" />
+            <div className="cardBody">
+              <h4 className="cardTitle">{project.title}</h4>
+              <p className="cardText">See the project and choose what you need!</p>
+              <button onClick={() => toggleLike(project.id)} className="counterButton">
+                {liked[project.id] ? "❤️ Liked" : "Like👍"} <span>{likes[project.id]}</span>
+              </button>
+              <span><br /></span>
+              <Link to={project.link} className="btn btn-primary">
+                View Project
+              </Link>
             </div>
-          </div> 
+          </div>
         ))}
       </div>
     </div>
