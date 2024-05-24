@@ -5,11 +5,15 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import '../styles/Navbar.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleCart } from '../components/project_3/counterSlice';
 
 function Navb({ setSearchTerm }) {
+  const count = useSelector((state) => state.counter.value);
   const location = useLocation();
   const [path, setPath] = useState(location.pathname);
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setPath(location.pathname);
@@ -20,13 +24,16 @@ function Navb({ setSearchTerm }) {
     setSearchTerm(e.target.value);
   };
 
+  const handleCartClick = () => {
+    dispatch(toggleCart());
+  };
+
   return (
     <Navbar expand="lg" className="navbar">
       <Container fluid className="navbar-container">
         <Navbar.Brand as={Link} to="/" className="navbar-logo">
           {path === "/" ? <h1>"-"Gangeswaran"-"</h1> : <h1>←Back</h1>}
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto d-flex align-items-center">
             {path === "/" && (
@@ -47,6 +54,11 @@ function Navb({ setSearchTerm }) {
           </Nav>
         </Navbar.Collapse>
       </Container>
+      {path === "/counter-redux" && (
+        <a onClick={handleCartClick}>
+          Cart {count}
+        </a>
+      )}
     </Navbar>
   );
 }
