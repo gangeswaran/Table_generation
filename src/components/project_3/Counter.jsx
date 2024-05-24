@@ -13,7 +13,6 @@ export function Counter() {
     { id: 4, title: "Product 4", image: img1, link: "/counter-redux" },
   ];
 
-  const count = useSelector((state) => state.counter.value);
   const addedCarts = useSelector((state) => state.counter.carts);
   const showCart = useSelector((state) => state.counter.showCart);
   const dispatch = useDispatch();
